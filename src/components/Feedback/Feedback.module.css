@@ -1,0 +1,13 @@
+.feedback__btn {
+  padding: 10px;
+  margin-left: 15px;
+  font-size: 20px;
+  text-align: center;
+  transition: background-color 500ms linear, transform 500ms;
+}
+
+.feedback__btn:hover,
+.feedback__btn:focus {
+  text-shadow: 2px 2px 4px #456a8e84;
+  transform: scale(1.07);
+}
