@@ -11,22 +11,14 @@ export class App extends Component {
     bad: 0,
   };
 
-  incrementGood = () => {
-    this.setState(prevState => ({
-      good: prevState.good + 1,
-    }));
-  };
+  countFeedback = evt => {
+    const nameBtn = evt.target.name.toLowerCase();
 
-  incrementNeutral = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
-  };
-
-  incrementBad = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
-    }));
+    this.setState(prevState => {
+      return {
+        [nameBtn]: prevState[nameBtn] + 1,
+      };
+    });
   };
 
   countTotalFeedback = () =>
@@ -49,9 +41,8 @@ export class App extends Component {
       <>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            onIncrementGood={this.incrementGood}
-            onIncrementNeutral={this.incrementNeutral}
-            onIncrementBad={this.incrementBad}
+            options={['Good', 'Neutral', 'Bad']}
+            onLeaveFeedback={this.countFeedback}
           />
         </Section>
         {total ? (

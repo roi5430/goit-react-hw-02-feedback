@@ -2,42 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import css from './Feedback.module.css';
 
-export const FeedbackOptions = ({
-  onIncrementGood,
-  onIncrementNeutral,
-  onIncrementBad,
-}) => {
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
-    <div>
-      <button
-        className={css.feedback__btn}
-        type="button"
-        onClick={onIncrementGood}
-      >
-        Good
-      </button>
-
-      <button
-        className={css.feedback__btn}
-        type="button"
-        onClick={onIncrementNeutral}
-      >
-        Neutral
-      </button>
-
-      <button
-        className={css.feedback__btn}
-        type="button"
-        onClick={onIncrementBad}
-      >
-        Bad
-      </button>
-    </div>
+    <ul className={css.feedback__list}>
+      {options.map(name => (
+        <li key={name}>
+          <button
+            type="button"
+            name={name}
+            className={css.feedback__btn}
+            onClick={onLeaveFeedback}
+          >
+            {name}
+          </button>
+        </li>
+      ))}
+    </ul>
   );
 };
 
 FeedbackOptions.propTypes = {
-  onIncrementGood: PropTypes.func,
-  onIncrementNeutral: PropTypes.func,
-  onIncrementBad: PropTypes.func,
+  options: PropTypes.arrayOf(PropTypes.string),
+  onLeaveFeedback: PropTypes.elementType,
 };
